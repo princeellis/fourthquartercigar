@@ -31,6 +31,14 @@ if os.environ.get('RAILWAY_ENVIRONMENT') or os.environ.get('DATABASE_URL'):
 # Allow all hosts in production (Railway), empty list for local development
 ALLOWED_HOSTS = ['*'] if os.environ.get('RAILWAY_ENVIRONMENT') or os.environ.get('DATABASE_URL') else []
 
+# CSRF trusted origins for production
+CSRF_TRUSTED_ORIGINS = []
+if os.environ.get('RAILWAY_ENVIRONMENT') or os.environ.get('DATABASE_URL'):
+    CSRF_TRUSTED_ORIGINS = [
+        'https://fourthquartercigar.com',
+        'https://www.fourthquartercigar.com',
+    ]
+
 
 # Application definition
 
@@ -84,13 +92,19 @@ WSGI_APPLICATION = 'fqcproj.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Use Railway's PostgreSQL if available, otherwise SQLite for local development
+if os.environ.get('DATABASE_URL'):
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
