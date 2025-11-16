@@ -1,0 +1,1956 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+    --color-gray: #4a4a4a;
+    --color-red: #c45a3a;
+    --color-blue: #4a7c7e;
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-light-gray: #f5f5f5;
+    --color-dark-gray: #1a1a1a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    color: var(--color-black);
+    background: var(--color-white);
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+/* Header */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 1rem 0;
+    z-index: 10000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.site-header.transparent-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(0);
+    border-bottom: none;
+    z-index: 10000;
+}
+
+.site-header.transparent-header .header-nav-link {
+    color: var(--color-white);
+    transition: opacity 0.3s ease;
+}
+
+.site-header.transparent-header .header-logo-img {
+    filter: brightness(0) invert(1);
+    transition: opacity 0.3s ease;
+}
+
+.site-header.transparent-header.scrolled .header-nav-link {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.site-header.transparent-header.scrolled .header-logo-img {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.site-header.transparent-header.scrolled .header-logo {
+    pointer-events: none;
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-logo {
+    text-decoration: none;
+}
+
+.header-logo-img {
+    height: 35px;
+    width: auto;
+    max-width: 200px;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.header-nav-link {
+    color: var(--color-black);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+.header-nav-link:hover {
+    opacity: 0.6;
+}
+
+/* Side Navigation */
+.side-nav {
+    position: fixed;
+    left: 0;
+    top: 60px;
+    bottom: 0;
+    width: 200px;
+    background: var(--color-white);
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 3rem 2rem;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    color: var(--color-black);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+.nav-link:hover {
+    opacity: 0.6;
+}
+
+.nav-contact {
+    margin-top: auto;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.contact-label {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-gray);
+    margin-bottom: 0.5rem;
+}
+
+.contact-link {
+    color: var(--color-black);
+    text-decoration: none;
+    font-size: 0.85rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    display: block;
+    transition: opacity 0.3s;
+}
+
+.contact-link:hover {
+    opacity: 0.6;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 200px;
+    margin-top: 60px;
+    min-height: calc(100vh - 60px);
+}
+
+.main-content.no-sidebar {
+    margin-left: 0;
+    margin-top: 0;
+}
+
+/* Hero Fullscreen */
+.hero-fullscreen {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--color-black);
+    margin: 0;
+    padding: 0;
+}
+
+.hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.hero-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    filter: grayscale(30%) brightness(0.7);
+}
+
+/* Video Hero */
+.hero-video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    background: var(--color-black);
+}
+
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.video-hero {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+}
+
+.hero-overlay {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: var(--color-white);
+    padding: 2rem;
+}
+
+.hero-brand {
+    margin-bottom: 3rem;
+}
+
+.hero-logo-large {
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+    margin-bottom: 1.5rem;
+}
+
+.hero-location {
+    font-size: 1rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+.hero-streaming {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.stream-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s;
+}
+
+.stream-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* About Block */
+.about-block {
+    padding: 6rem 3rem;
+    background: var(--color-white);
+    position: relative;
+    z-index: 1;
+}
+
+.about-inner {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about-large-text {
+    font-size: 1.2rem;
+    line-height: 1.9;
+    color: var(--color-dark-gray);
+    margin-bottom: 2rem;
+}
+
+.about-members-list {
+    font-size: 1.1rem;
+    color: var(--color-dark-gray);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.about-grateful {
+    font-size: 1rem;
+    color: var(--color-gray);
+    font-style: italic;
+}
+
+/* Section Heading */
+.section-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    color: var(--color-black);
+}
+
+/* Releases Section */
+.releases-section {
+    padding: 6rem 3rem;
+    background: var(--color-light-gray);
+    position: relative;
+    z-index: 1;
+}
+
+.releases-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.release-large-card {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 3rem;
+    background: var(--color-white);
+    padding: 2rem;
+    transition: transform 0.3s;
+}
+
+.release-large-card:hover {
+    transform: translateY(-5px);
+}
+
+.release-image-large {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.release-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.release-info-large {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.release-title-large {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-black);
+}
+
+.release-type-large {
+    font-size: 0.9rem;
+    color: var(--color-gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.release-icons-large {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.icon-btn {
+    color: var(--color-black);
+    transition: opacity 0.3s;
+}
+
+.icon-btn:hover {
+    opacity: 0.6;
+}
+
+.view-more-link {
+    color: var(--color-blue);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+.view-more-link:hover {
+    opacity: 0.6;
+}
+
+/* Members Section */
+/* Merch Section */
+.merch-section {
+    padding: 6rem 3rem;
+    background: #2a1f1a;
+    position: relative;
+    z-index: 1;
+}
+
+.merch-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 4rem;
+    overflow: hidden;
+}
+
+.merch-carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.merch-carousel {
+    position: relative;
+    width: 100%;
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.merch-slide {
+    min-width: 100%;
+    width: 100%;
+    max-width: 100%;
+    flex-shrink: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+.merch-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 4rem;
+    border-radius: 12px;
+    background: rgba(30, 30, 30, 0.95);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    min-height: 500px;
+    box-sizing: border-box;
+}
+
+.merch-text-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.merch-label {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    margin: 0;
+}
+
+.merch-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: var(--color-white);
+    margin: 0;
+    line-height: 1.1;
+}
+
+.merch-badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: rgba(220, 20, 60, 0.9);
+    color: var(--color-white);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 4px;
+    width: fit-content;
+    box-shadow: 0 2px 8px rgba(220, 20, 60, 0.4);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.9;
+        transform: scale(1.02);
+    }
+}
+
+.merch-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.merch-shop-btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: rgba(139, 69, 19, 0.8);
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-align: center;
+    width: fit-content;
+}
+
+.merch-shop-btn:hover {
+    background: rgba(139, 69, 19, 1);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 69, 19, 0.4);
+}
+
+.merch-products {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+}
+
+.merch-product-item {
+    position: relative;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.4s ease;
+    min-width: 0;
+    max-width: 350px;
+}
+
+.merch-product-item:hover {
+    transform: scale(1.05);
+}
+
+.merch-product-img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+    object-position: center center;
+    background: transparent;
+    filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.4));
+    transition: filter 0.3s ease;
+    display: block;
+}
+
+/* Navigation */
+.merch-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: 2px solid rgba(200, 200, 200, 0.6);
+    color: var(--color-white);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.merch-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.merch-nav-prev {
+    left: -0.75rem;
+}
+
+.merch-nav-next {
+    right: -0.75rem;
+}
+
+.merch-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+.merch-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.merch-dot:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.merch-dot.active {
+    background: var(--color-white);
+    width: 24px;
+    border-radius: 12px;
+}
+
+.members-section {
+    padding: 6rem 3rem 5rem 3rem;
+    background: var(--color-dark-gray);
+    color: var(--color-white);
+}
+
+.members-section .section-heading {
+    color: var(--color-white);
+}
+
+.members-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.member-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.member-name {
+    font-weight: 600;
+    min-width: 150px;
+    color: var(--color-white);
+}
+
+.member-separator {
+    color: var(--color-gray);
+}
+
+.member-role-text {
+    flex: 1;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.member-ig {
+    color: var(--color-blue);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: opacity 0.3s;
+}
+
+.member-ig:hover {
+    opacity: 0.6;
+}
+
+/* Concerts Section */
+.concerts-section {
+    padding: 6rem 3rem;
+    background: var(--color-white);
+}
+
+.concerts-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.concert-card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    background: var(--color-light-gray);
+    padding: 2rem;
+    transition: transform 0.3s;
+}
+
+.concert-card:hover {
+    transform: translateX(5px);
+}
+
+.concert-img-wrapper {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.concert-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.concert-details {
+    display: flex;
+    gap: 2rem;
+    align-items: start;
+}
+
+.concert-date-block {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    min-width: 80px;
+}
+
+.concert-month {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-gray);
+}
+
+.concert-day-num {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-black);
+    margin: 0.3rem 0;
+}
+
+.concert-info-block {
+    flex: 1;
+}
+
+.concert-venue-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-black);
+}
+
+.concert-location-text {
+    color: var(--color-gray);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.concert-setlist-text {
+    color: var(--color-gray);
+    font-size: 0.9rem;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.ticket-link {
+    padding: 0.7rem 1.5rem;
+    background: var(--color-black);
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    align-self: start;
+}
+
+.ticket-link:hover {
+    background: var(--color-red);
+}
+
+.view-all-container {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.view-all-btn {
+    color: var(--color-blue);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+.view-all-btn:hover {
+    opacity: 0.6;
+}
+
+/* Page Header Section */
+.page-header-section-simple {
+    padding: 4rem 3rem 2rem 3rem;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.page-header-title-simple {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-black);
+    margin: 0;
+}
+
+.page-header-section {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 60px;
+}
+
+.page-header-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.page-header-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    filter: grayscale(30%) brightness(0.6);
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.page-header-overlay {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: var(--color-white);
+    padding: 1.5rem;
+}
+
+.page-header-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+}
+
+.page-header-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.header-stream-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s;
+}
+
+.header-stream-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Music Releases Section */
+.music-releases-section {
+    padding: 4rem 3rem;
+    background: var(--color-white);
+}
+
+.music-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.music-release-card {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 3rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+.music-release-card:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.music-release-artwork {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.music-artwork-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.music-release-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.music-release-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--color-black);
+}
+
+.music-release-meta {
+    font-size: 0.9rem;
+    color: var(--color-gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.music-release-streaming {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.music-stream-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--color-black);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: opacity 0.3s;
+}
+
+.music-stream-link:hover {
+    opacity: 0.6;
+}
+
+.music-songs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.music-song-item {
+    display: grid;
+    grid-template-columns: 30px 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1rem;
+    transition: background 0.3s;
+}
+
+.music-song-item:hover {
+    background: var(--color-light-gray);
+}
+
+.music-song-number {
+    font-size: 0.9rem;
+    color: var(--color-gray);
+    font-weight: 500;
+}
+
+.music-song-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.music-song-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-black);
+}
+
+.music-song-meta {
+    font-size: 0.85rem;
+    color: var(--color-gray);
+}
+
+.music-song-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.music-song-link {
+    color: var(--color-black);
+    transition: opacity 0.3s;
+}
+
+.music-song-link:hover {
+    opacity: 0.6;
+}
+
+/* Decorative Photos */
+.decorative-photo {
+    margin: 3rem 0;
+    max-width: 250px;
+    width: 100%;
+    opacity: 0.85;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.decorative-photo:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.decorative-photo-img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    object-position: center center;
+    aspect-ratio: 1;
+    filter: grayscale(30%) brightness(0.95);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s ease;
+}
+
+.decorative-photo:hover .decorative-photo-img {
+    filter: grayscale(0%) brightness(1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* Alternate positioning for decorative photos */
+.decorative-photo.float-left {
+    float: left;
+    margin: 2rem 2rem 2rem 0;
+    max-width: 200px;
+    transform: rotate(-2deg);
+}
+
+.decorative-photo.float-left:hover {
+    transform: rotate(0deg) scale(1.05);
+}
+
+.decorative-photo.float-right {
+    float: right;
+    margin: 2rem 0 2rem 2rem;
+    max-width: 220px;
+    transform: rotate(2deg);
+}
+
+.decorative-photo.float-right:hover {
+    transform: rotate(0deg) scale(1.05);
+}
+
+.decorative-photo.center {
+    margin: 3rem auto;
+    max-width: 280px;
+    transform: rotate(-1deg);
+}
+
+.decorative-photo.center:hover {
+    transform: rotate(0deg) scale(1.05);
+}
+
+/* Clear floats */
+.music-release-card::after,
+.show-card::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Shows Section */
+.shows-section {
+    padding: 4rem 3rem;
+    background: var(--color-white);
+}
+
+.shows-section-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    color: var(--color-black);
+}
+
+.shows-grid {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+}
+
+.show-card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    background: var(--color-light-gray);
+    padding: 2rem;
+    transition: transform 0.3s;
+    overflow: hidden;
+    position: relative;
+}
+
+.show-card:hover {
+    transform: translateX(5px);
+}
+
+.show-image-box {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.show-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.show-info-box {
+    display: flex;
+    gap: 2rem;
+    align-items: start;
+}
+
+.show-date-box {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    min-width: 80px;
+}
+
+.show-month {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-gray);
+}
+
+.show-day {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-black);
+    margin: 0.3rem 0;
+}
+
+.show-year {
+    font-size: 0.85rem;
+    color: var(--color-gray);
+}
+
+.show-details-box {
+    flex: 1;
+}
+
+.show-venue {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-black);
+}
+
+.show-location {
+    color: var(--color-gray);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.show-setlist {
+    color: var(--color-gray);
+    font-size: 0.9rem;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.show-ticket-btn {
+    padding: 0.7rem 1.5rem;
+    background: var(--color-black);
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    align-self: start;
+}
+
+.show-ticket-btn:hover {
+    background: var(--color-red);
+}
+
+.no-shows-message {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--color-gray);
+    font-style: italic;
+    padding: 2rem 0;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.request-show-btn {
+    padding: 0.8rem 2rem;
+    background: var(--color-black);
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: all 0.3s;
+    border-radius: 4px;
+    font-style: normal;
+}
+
+.request-show-btn:hover {
+    background: var(--color-red);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.past-shows {
+    background: var(--color-white);
+}
+
+.past-show-card {
+    background: var(--color-white);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.past-show-image-box {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.past-show-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.past-show-info-box {
+    display: flex;
+    gap: 1.5rem;
+    align-items: start;
+    padding: 1.5rem;
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 4rem 3rem;
+    background: var(--color-light-gray);
+    text-align: center;
+    scroll-margin-top: 80px;
+}
+
+.contact-section-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--color-black);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.contact-section-text {
+    font-size: 1.1rem;
+    color: var(--color-gray);
+    margin-bottom: 1.5rem;
+}
+
+.contact-email-link {
+    font-size: 1.2rem;
+    color: var(--color-black);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-black);
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.contact-email-link:hover {
+    color: var(--color-red);
+    border-bottom-color: var(--color-red);
+}
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Footer */
+.site-footer {
+    background: var(--color-black);
+    color: var(--color-white);
+    padding: 3rem 0;
+    margin-top: 0;
+}
+
+.footer-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+}
+
+.footer-content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-copyright {
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+.footer-social {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-social-link {
+    color: var(--color-white);
+    transition: opacity 0.3s;
+}
+
+.footer-social-link:hover {
+    opacity: 0.7;
+}
+
+.footer-powered {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.footer-powered p {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    color: var(--color-white);
+}
+
+.footer-powered-link {
+    color: var(--color-white);
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.footer-powered-link:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+/* Messages */
+.messages {
+    max-width: 1200px;
+    margin: 1rem auto;
+    padding: 0 3rem;
+}
+
+.alert {
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-left: 3px solid #155724;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 3px solid #721c24;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .side-nav {
+        width: 180px;
+    }
+    
+    .main-content {
+        margin-left: 180px;
+    }
+    
+    .merch-content {
+        grid-template-columns: 1fr 1.2fr;
+        gap: 3rem;
+    }
+    
+    .merch-title {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        padding: 0 1.5rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .header-logo-img {
+        height: 30px;
+    }
+    
+    .header-nav {
+        gap: 1rem;
+    }
+    
+    .header-nav-link {
+        font-size: 0.75rem;
+    }
+    
+    .site-header {
+        padding: 0.75rem 0;
+    }
+    
+    .side-nav {
+        position: relative;
+        width: 100%;
+        top: 0;
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        padding: 1.5rem;
+    }
+    
+    .nav-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .nav-contact {
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        margin-top: 80px;
+    }
+    
+    .main-content.no-sidebar {
+        margin-top: 0;
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .video-hero {
+        position: relative;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .site-header.transparent-header .header-nav-link,
+    .site-header.transparent-header .header-logo-img {
+        filter: brightness(0) invert(1);
+    }
+    
+    .hero-fullscreen {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        min-height: 500px;
+        max-height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    
+    .hero-video-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+    
+    .hero-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    
+    .releases-section,
+    .merch-section,
+    .members-section,
+    .concerts-section {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+    }
+    
+    .page-header-section-simple {
+        padding: 3rem 1.5rem 1.5rem 1.5rem;
+        margin-top: 60px;
+    }
+    
+    .page-header-title-simple {
+        font-size: 2rem;
+    }
+    
+    .about-block,
+    .releases-section,
+    .members-section,
+    .concerts-section,
+    .music-releases-section,
+    .shows-section,
+    .merch-section {
+        padding: 3rem 1.5rem;
+    }
+    
+    .section-heading {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .merch-container {
+        padding: 0 1rem;
+    }
+    
+    .merch-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem 1.5rem;
+        min-height: auto;
+    }
+    
+    .merch-title {
+        font-size: 2rem;
+    }
+    
+    .merch-label {
+        font-size: 0.7rem;
+    }
+    
+    .merch-badge {
+        font-size: 0.65rem;
+        padding: 0.4rem 1rem;
+    }
+    
+    .merch-shop-btn {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .merch-products {
+        flex-direction: column;
+        gap: 1.5rem;
+        min-height: auto;
+    }
+    
+    .merch-product-item {
+        max-width: 100%;
+    }
+    
+    .merch-product-img {
+        max-width: 100%;
+        max-height: 350px;
+    }
+    
+    .merch-nav-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .merch-nav-prev {
+        left: -0.5rem;
+    }
+    
+    .merch-nav-next {
+        right: -0.5rem;
+    }
+    
+    .merch-dots {
+        margin-top: 1.5rem;
+    }
+    
+    .release-large-card {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .release-image-large {
+        width: 100%;
+        height: 300px;
+    }
+    
+    .release-title-large {
+        font-size: 1.75rem;
+    }
+    
+    .music-release-card {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .music-release-artwork {
+        position: relative;
+        top: 0;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .music-release-title {
+        font-size: 1.5rem;
+    }
+    
+    .music-song-item {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .concert-card,
+    .show-card {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .concert-img-wrapper,
+    .show-image-box {
+        width: 100%;
+        height: 200px;
+    }
+    
+    .concert-details,
+    .show-info-box {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .past-show-card {
+        max-width: 100%;
+    }
+    
+    .past-show-image-box {
+        height: 200px;
+    }
+    
+    .past-show-info-box {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .page-header-section {
+        height: 250px;
+        margin-top: 60px;
+    }
+    
+    .page-header-title {
+        font-size: 2rem;
+    }
+    
+    .page-header-overlay {
+        padding: 1rem;
+    }
+    
+    .members-list {
+        gap: 1rem;
+    }
+    
+    .member-item {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .footer-content-wrapper {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+    
+    .footer-social {
+        justify-content: center;
+    }
+    
+    .footer-inner {
+        padding: 0 1.5rem;
+    }
+    
+    .contact-section {
+        padding: 3rem 1.5rem;
+    }
+    
+    .no-shows-message {
+        padding: 2rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-container {
+        padding: 0 1rem;
+    }
+    
+    .header-nav {
+        gap: 0.75rem;
+    }
+    
+    .header-nav-link {
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .merch-section,
+    .releases-section,
+    .members-section,
+    .concerts-section,
+    .music-releases-section,
+    .shows-section {
+        padding: 2rem 1rem;
+    }
+    
+    .merch-content {
+        padding: 1.5rem 1rem;
+    }
+    
+    .merch-title {
+        font-size: 1.75rem;
+    }
+    
+    .merch-product-img {
+        max-height: 280px;
+    }
+    
+    .section-heading {
+        font-size: 1.25rem;
+    }
+    
+    .release-title-large {
+        font-size: 1.5rem;
+    }
+    
+    .music-release-title {
+        font-size: 1.25rem;
+    }
+    
+    .page-header-title-simple {
+        font-size: 1.75rem;
+    }
+    
+    .show-venue {
+        font-size: 1.1rem;
+    }
+    
+    .contact-section {
+        padding: 2rem 1rem;
+    }
+    
+    .footer-inner {
+        padding: 0 1rem;
+    }
+    
+    .hero-fullscreen {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        min-height: 400px;
+        max-height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    
+    .hero-video-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+    
+    .hero-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    
+    .releases-section {
+        position: relative;
+        z-index: 1;
+        background: var(--color-white);
+        width: 100%;
+    }
+    
+    .merch-section {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+    }
+    
+    .main-content.no-sidebar {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+}

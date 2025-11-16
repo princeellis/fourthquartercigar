@@ -1,0 +1,199 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Fourth Quarter Cigar{% endblock %}
+
+{% block top_bar_class %}transparent-header{% endblock %}
+{% block side_nav %}{% endblock %}
+{% block main_content_class %}no-sidebar{% endblock %}
+
+{% block content %}
+<!-- Full-Width Video Background -->
+<div class="hero-fullscreen video-hero">
+    <div class="hero-video-container">
+        <video class="hero-video" autoplay muted loop playsinline preload="auto">
+            <source src="{% static 'base/videos/video-output-7295B367-E136-403E-A1D2-E22E5F370589-1.mov' %}" type="video/quicktime">
+            <source src="{% static 'base/videos/video-output-7295B367-E136-403E-A1D2-E22E5F370589-1.mov' %}" type="video/mp4">
+        </video>
+    </div>
+</div>
+
+<!-- Merch Photos -->
+{% if merch_photos %}
+<div class="merch-section">
+    <div class="merch-container">
+        <div class="merch-carousel-wrapper">
+            <div class="merch-carousel" id="merchCarousel">
+                <!-- Slide 1: Passenger Items -->
+                <div class="merch-slide active">
+                    <div class="merch-content">
+                        <div class="merch-text-section">
+                            <p class="merch-label">MERCH</p>
+                            <h2 class="merch-title">SHOP PASSENGER ITEMS</h2>
+                            <div class="merch-badge">LIMITED STOCK</div>
+                            <div class="merch-buttons">
+                                <a href="https://fourth-quarter-cigar.printify.me/" target="_blank" class="merch-shop-btn">SHOP NOW</a>
+                            </div>
+                        </div>
+                        <div class="merch-products">
+                            {% if merch_photos|length >= 1 %}
+                            <div class="merch-product-item">
+                                <img src="{{ merch_photos.0.get_photo_url }}" alt="{{ merch_photos.0.caption|default:'Merch' }}" class="merch-product-img">
+                            </div>
+                            {% endif %}
+                            {% if merch_photos|length > 1 %}
+                            {% with last_index=merch_photos|length|add:"-1" %}
+                            <div class="merch-product-item">
+                                {% for merch in merch_photos %}
+                                {% if forloop.counter0 == last_index %}
+                                <img src="{{ merch.get_photo_url }}" alt="{{ merch.caption|default:'Merch' }}" class="merch-product-img">
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            {% endwith %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 2: Need a Ride Merch -->
+                {% if merch_photos|length > 2 %}
+                <div class="merch-slide">
+                    <div class="merch-content">
+                        <div class="merch-text-section">
+                            <p class="merch-label">MERCH</p>
+                            <h2 class="merch-title">SHOP NEED A RIDE MERCH</h2>
+                            <div class="merch-badge">LIMITED STOCK</div>
+                            <div class="merch-buttons">
+                                <a href="https://fourth-quarter-cigar.printify.me/" target="_blank" class="merch-shop-btn">SHOP NOW</a>
+                            </div>
+                        </div>
+                        <div class="merch-products">
+                            {% for merch in merch_photos %}
+                            {% if forloop.counter0 > 0 and forloop.counter0 < merch_photos|length|add:"-1" %}
+                            <div class="merch-product-item">
+                                <img src="{{ merch.get_photo_url }}" alt="{{ merch.caption|default:'Merch' }}" class="merch-product-img">
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Navigation Arrows -->
+            {% if merch_photos|length > 2 %}
+            <button class="merch-nav-btn merch-nav-prev" id="merchPrevBtn" aria-label="Previous">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+            <button class="merch-nav-btn merch-nav-next" id="merchNextBtn" aria-label="Next">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
+            
+            <!-- Dots Indicator -->
+            <div class="merch-dots">
+                <span class="merch-dot active" data-slide="0"></span>
+                <span class="merch-dot" data-slide="1"></span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Releases - Large Cards -->
+<div class="releases-section">
+    <h2 class="section-heading">RELEASES</h2>
+    <div class="releases-container">
+        {% for release in releases %}
+        <div class="release-large-card">
+            <div class="release-image-large">
+                {% if release.get_artwork_url %}
+                <img src="{{ release.get_artwork_url }}" alt="{{ release.title }}" class="release-img">
+                {% else %}
+                <div class="release-placeholder">{{ release.title }}</div>
+                {% endif %}
+            </div>
+            <div class="release-info-large">
+                <h3 class="release-title-large">{{ release.title }}</h3>
+                <p class="release-type-large">{{ release.release_type }} • {{ release.release_date|date:"Y" }}</p>
+                <div class="release-icons-large">
+                    <a href="{{ release.spotify_url }}" target="_blank" class="icon-btn">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="#1DB954">
+                            <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.84-.179-.84-.66 0-.359.24-.66.54-.779 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.242 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/>
+                        </svg>
+                    </a>
+                    {% if release.youtube_url %}
+                    <a href="{{ release.youtube_url }}" target="_blank" class="icon-btn">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="#FF0000">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
+                    {% endif %}
+                </div>
+                <a href="{% url 'music' %}" class="view-more-link">View All Music →</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Band Members - Minimal List -->
+<div class="members-section">
+    <h2 class="section-heading">BAND</h2>
+    <div class="members-list">
+        {% for member in members %}
+        <div class="member-item">
+            <span class="member-name">{{ member.display_name }}</span>
+            <span class="member-separator">•</span>
+            <span class="member-role-text">{{ member.role }}</span>
+            {% if member.instagram_handle %}
+            <a href="https://www.instagram.com/{{ member.instagram_handle }}/" target="_blank" class="member-ig">@{{ member.instagram_handle }}</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Concerts - If Any -->
+{% if upcoming_concerts %}
+<div class="concerts-section">
+    <h2 class="section-heading">UPCOMING SHOWS</h2>
+    <div class="concerts-container">
+        {% for concert in upcoming_concerts %}
+        <div class="concert-card">
+            {% if concert.get_photo_url or concert.photos.first %}
+            <div class="concert-img-wrapper">
+                <img src="{% if concert.get_photo_url %}{{ concert.get_photo_url }}{% else %}{{ concert.photos.first.get_photo_url }}{% endif %}" alt="{{ concert.venue }}" class="concert-img">
+            </div>
+            {% endif %}
+            <div class="concert-details">
+                <div class="concert-date-block">
+                    <span class="concert-month">{{ concert.date|date:"M" }}</span>
+                    <span class="concert-day-num">{{ concert.date|date:"d" }}</span>
+                </div>
+                <div class="concert-info-block">
+                    <h4 class="concert-venue-name">{{ concert.venue }}</h4>
+                    <p class="concert-location-text">{{ concert.city }}{% if concert.state %}, {{ concert.state }}{% endif %}</p>
+                    {% if concert.setlist %}
+                    <p class="concert-setlist-text">{{ concert.setlist }}</p>
+                    {% endif %}
+                </div>
+                {% if concert.ticket_url %}
+                <a href="{{ concert.ticket_url }}" target="_blank" class="ticket-link">TICKETS</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="view-all-container">
+        <a href="{% url 'concerts' %}" class="view-all-btn">View All Shows →</a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

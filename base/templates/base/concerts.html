@@ -1,0 +1,110 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Tour - Fourth Quarter Cigar{% endblock %}
+
+{% block side_nav %}{% endblock %}
+{% block main_content_class %}no-sidebar{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="page-header-section-simple">
+    <h1 class="page-header-title-simple">SHOWS</h1>
+</div>
+
+{% if upcoming_concerts %}
+<div class="shows-section">
+    <h2 class="shows-section-heading">UPCOMING</h2>
+    <div class="shows-grid">
+        {% for concert in upcoming_concerts %}
+        <div class="show-card">
+            {% if concert.get_photo_url or concert.photos.first %}
+            <div class="show-image-box">
+                <img src="{% if concert.get_photo_url %}{{ concert.get_photo_url }}{% else %}{{ concert.photos.first.get_photo_url }}{% endif %}" alt="{{ concert.venue }}" class="show-image">
+            </div>
+            {% endif %}
+            <div class="show-info-box">
+                <div class="show-date-box">
+                    <span class="show-month">{{ concert.date|date:"M" }}</span>
+                    <span class="show-day">{{ concert.date|date:"d" }}</span>
+                    <span class="show-year">{{ concert.date|date:"Y" }}</span>
+                </div>
+                <div class="show-details-box">
+                    <h3 class="show-venue">{{ concert.venue }}</h3>
+                    <p class="show-location">{{ concert.city }}{% if concert.state %}, {{ concert.state }}{% endif %}</p>
+                    {% if concert.setlist %}
+                    <p class="show-setlist">{{ concert.setlist }}</p>
+                    {% endif %}
+                </div>
+                {% if concert.ticket_url %}
+                <a href="{{ concert.ticket_url }}" target="_blank" class="show-ticket-btn">TICKETS</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<div class="shows-section">
+    <div class="no-shows-message">
+        <p>No upcoming shows scheduled. Check back soon!</p>
+        <a href="#contact-section" class="request-show-btn">REQUEST SHOW</a>
+    </div>
+</div>
+{% endif %}
+
+{% if past_concerts %}
+<div class="shows-section past-shows">
+    <h2 class="shows-section-heading">PAST SHOWS</h2>
+    <div class="shows-grid">
+        {% for concert in past_concerts %}
+        <div class="show-card past-show-card">
+            {% if concert.get_photo_url or concert.photos.first %}
+            <div class="past-show-image-box">
+                <img src="{% if concert.get_photo_url %}{{ concert.get_photo_url }}{% else %}{{ concert.photos.first.get_photo_url }}{% endif %}" alt="{{ concert.venue }}" class="past-show-image">
+            </div>
+            {% endif %}
+            <div class="past-show-info-box">
+                <div class="show-date-box">
+                    <span class="show-month">{{ concert.date|date:"M" }}</span>
+                    <span class="show-day">{{ concert.date|date:"d" }}</span>
+                    <span class="show-year">{{ concert.date|date:"Y" }}</span>
+                </div>
+                <div class="show-details-box">
+                    <h3 class="show-venue">{{ concert.venue }}</h3>
+                    <p class="show-location">{{ concert.city }}{% if concert.state %}, {{ concert.state }}{% endif %}</p>
+                    {% if concert.setlist %}
+                    <p class="show-setlist"><strong>Setlist:</strong> {{ concert.setlist }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<!-- Contact Section -->
+<div id="contact-section" class="contact-section">
+    <h2 class="contact-section-heading">BOOKING & CONTACT</h2>
+    <p class="contact-section-text">For booking inquiries and show requests, please contact us at:</p>
+    <a href="mailto:fourthquartercigar@gmail.com?subject=Show Request" class="contact-email-link">fourthquartercigar@gmail.com</a>
+</div>
+
+<!-- Band Members - Minimal List -->
+<div class="members-section">
+    <h2 class="section-heading">BAND</h2>
+    <div class="members-list">
+        {% for member in members %}
+        <div class="member-item">
+            <span class="member-name">{{ member.display_name }}</span>
+            <span class="member-separator">•</span>
+            <span class="member-role-text">{{ member.role }}</span>
+            {% if member.instagram_handle %}
+            <a href="https://www.instagram.com/{{ member.instagram_handle }}/" target="_blank" class="member-ig">@{{ member.instagram_handle }}</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
