@@ -27,8 +27,10 @@ urlpatterns = [
     path('concerts/', views.concerts, name='concerts'),
 ]
 
-# Serve static and media files in development
+# Serve static files in development
 if settings.DEBUG:
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
     urlpatterns += staticfiles_urlpatterns()
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Serve media files in both development and production
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
