@@ -144,12 +144,17 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# WhiteNoise configuration for static files (only if available)
-try:
-    import whitenoise
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-except ImportError:
-    pass
+# Configure static files storage
+# Use WhiteNoise in production for serving static files
+if os.environ.get('RAILWAY_ENVIRONMENT') or os.environ.get('DATABASE_URL'):
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        },
+    }
 
 # Media files (uploaded images)
 MEDIA_URL = '/media/'
