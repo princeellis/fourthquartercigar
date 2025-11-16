@@ -1,96 +1,93 @@
-# Fourth Quarter Cigar Website
+# Fourth Quarter Cigar (4QC) Website
 
-A Django website for the indie rock/pop band Fourth Quarter Cigar (4QC).
+Official website for the indie pop/rock band Fourth Quarter Cigar.
 
 ## Features
 
-- **Home Page**: Band introduction, members, latest releases, and upcoming concerts
-- **Music Page**: All releases (EP and singles) with Spotify and YouTube links
-- **Concerts Page**: Upcoming and past shows
-- **Contact Page**: Contact form and social media links
-- **Merch Link**: Direct link to Printify store
-- **Admin Panel**: Manage band members, releases, songs, and concerts
+- **Home Page**: Full-screen video background, merch carousel, releases showcase, band members, and upcoming shows
+- **Music Page**: Complete discography with streaming links to Spotify and YouTube
+- **Shows Page**: Upcoming and past concert listings with setlists
+- **Responsive Design**: Fully optimized for desktop, tablet, and mobile devices
+
+## Technology Stack
+
+- Django 5.2.8
+- Python 3.11
+- HTML5/CSS3
+- JavaScript
 
 ## Setup
 
-1. **Activate the virtual environment:**
-   ```bash
-   cd fqcproj
-   source 4QCenv/bin/activate
-   ```
+1. Clone the repository:
+```bash
+git clone https://github.com/princeellis/fourthquartercigar.git
+cd fourthquartercigar
+```
 
-2. **Run migrations (already done):**
-   ```bash
-   python manage.py migrate
-   ```
+2. Create and activate a virtual environment:
+```bash
+python -m venv 4QCenv
+source 4QCenv/bin/activate  # On Windows: 4QCenv\Scripts\activate
+```
 
-3. **Populate initial data (already done):**
-   ```bash
-   python manage.py populate_data
-   ```
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-4. **Create a superuser for admin access:**
-   ```bash
-   python manage.py createsuperuser
-   ```
+4. Run migrations:
+```bash
+python manage.py migrate
+```
 
-5. **Run the development server:**
-   ```bash
-   python manage.py runserver
-   ```
+5. Create a superuser:
+```bash
+python manage.py createsuperuser
+```
 
-6. **Access the site:**
-   - Website: http://127.0.0.1:8000/
-   - Admin: http://127.0.0.1:8000/admin/
+6. Populate initial data (optional):
+```bash
+python manage.py populate_data
+```
 
-## Managing Content
+7. Run the development server:
+```bash
+python manage.py runserver
+```
 
-### Adding Concert Dates
+## Admin Panel
 
-1. Go to http://127.0.0.1:8000/admin/
-2. Log in with your superuser account
-3. Click on "Concerts" → "Add Concert"
-4. Fill in:
-   - Date
-   - Venue
-   - City
-   - State (optional)
-   - Ticket URL (optional)
-   - Check "Is upcoming" for future shows
+Access the Django admin panel at `http://127.0.0.1:8000/admin/` to manage:
+- Band members
+- Releases and songs
+- Concerts and concert photos
+- Band photos
+- Merch photos
 
-### Adding New Releases
+## Project Structure
 
-1. Go to Admin → "Releases" → "Add Release"
-2. Fill in release details
-3. Add songs to the release by going to "Songs" → "Add Song" and selecting the release
+```
+fqcproj/
+├── base/              # Main Django app
+│   ├── models.py      # Database models
+│   ├── views.py       # View functions
+│   ├── admin.py       # Admin configuration
+│   ├── templates/     # HTML templates
+│   └── static/        # CSS, images, videos
+├── fqcproj/           # Django project settings
+│   ├── settings.py    # Project configuration
+│   └── urls.py        # URL routing
+└── manage.py          # Django management script
+```
 
-### Updating Band Members
+## Media Files
 
-1. Go to Admin → "Band Members"
-2. Edit existing members or add new ones
-3. Use the "Order" field to control display order
+Upload images and videos through the Django admin panel. Media files are stored in the `media/` directory.
 
-## Color Scheme
+## Static Files
 
-The site uses colors from the band logo:
-- **Dark Gray** (#4a4a4a): "FOURTH"
-- **Rusty Red** (#c45a3a): "QUARTER"
-- **Muted Blue/Teal** (#4a7c7e): "CIGAR"
-- **Black**: Backgrounds and navigation
+Static files (CSS, images, videos) are located in `base/static/base/`. Run `python manage.py collectstatic` to collect static files for production.
 
-## Current Data
+## License
 
-- **Band Members**: 6 members (Eli, Micah, Katie, Coleson, Austin, Carter)
-- **Releases**: 
-  - Passenger EP (5 songs)
-  - Away (Single)
-  - Need a Ride (Single)
-- **Social Links**: Spotify, YouTube, Instagram
-- **Merch**: Printify store link
-
-## Notes
-
-- The contact form currently sends emails to the console (for development). Update `EMAIL_BACKEND` in `settings.py` for production.
-- Concert dates can be added through the admin panel as they become available.
-- All Spotify and YouTube links are already configured.
-
+All rights reserved.
