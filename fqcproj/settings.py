@@ -75,8 +75,6 @@ WSGI_APPLICATION = 'fqcproj.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-# Database
 # Use Railway's PostgreSQL if available, otherwise SQLite
 if os.environ.get('DATABASE_URL'):
     import dj_database_url
