@@ -158,7 +158,8 @@ if os.environ.get('RAILWAY_ENVIRONMENT') or os.environ.get('DATABASE_URL'):
 
 # Media files (uploaded images)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+# Use absolute path for Railway volume mount
+MEDIA_ROOT = os.environ.get('MEDIA_ROOT', str(BASE_DIR / 'media'))
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
