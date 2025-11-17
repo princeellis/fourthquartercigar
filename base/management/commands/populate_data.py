@@ -7,10 +7,10 @@ class Command(BaseCommand):
     help = 'Populate database with initial band data'
 
     def handle(self, *args, **options):
-        # Clear existing data
-        BandMember.objects.all().delete()
-        Song.objects.all().delete()
-        Release.objects.all().delete()
+        # Only populate if database is empty (first time setup)
+        if BandMember.objects.exists() or Release.objects.exists():
+            self.stdout.write(self.style.WARNING('Database already populated. Skipping...'))
+            return
         
         # Create band members
         members_data = [
