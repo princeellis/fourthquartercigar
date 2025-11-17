@@ -17,9 +17,9 @@ class Command(BaseCommand):
             {'name': 'Elisha (Eli) McDuffie', 'role': 'Electric Guitar', 'instagram_handle': 'elishamcduffie', 'order': 1},
             {'name': 'Micah McDuffie', 'role': 'Drums', 'instagram_handle': None, 'order': 2},
             {'name': 'Katie Berglin', 'role': 'Singer', 'instagram_handle': 'katie.berglin', 'order': 3},
-            {'name': 'Coleson Franklin', 'role': 'Bass', 'instagram_handle': 'colesonfranklin_', 'order': 4},
+            {'name': 'Coleson Franklin', 'role': 'Bass Guitar', 'instagram_handle': 'colesonfranklin_', 'order': 4},
             {'name': 'Austin Martin', 'role': 'Electric Guitar and Singer', 'instagram_handle': None, 'order': 5},
-            {'name': 'Carter Randell', 'role': 'Bass', 'instagram_handle': 'cjrandell0', 'order': 6},
+            {'name': 'Carter Randell', 'role': 'Bass Guitar', 'instagram_handle': 'cjrandell0', 'order': 6},
         ]
         
         for member_data in members_data:
