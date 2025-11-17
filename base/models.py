@@ -30,9 +30,13 @@ class Release(models.Model):
     
     def get_artwork_url(self):
         """Return artwork URL from file upload or URL field"""
+        # Prioritize photo_url if provided
+        if self.artwork_url:
+            return self.artwork_url
+        # Fall back to uploaded file if it exists
         if self.artwork:
             return self.artwork.url
-        return self.artwork_url
+        return None
     
     class Meta:
         ordering = ['-order', '-release_date']
@@ -72,9 +76,13 @@ class Concert(models.Model):
     
     def get_photo_url(self):
         """Return photo URL from file upload or URL field"""
+        # Prioritize photo_url if provided
+        if self.photo_url:
+            return self.photo_url
+        # Fall back to uploaded file if it exists
         if self.photo:
             return self.photo.url
-        return self.photo_url
+        return None
     
     def __str__(self):
         location = f"{self.city}, {self.state}" if self.state else self.city
@@ -92,9 +100,13 @@ class ConcertPhoto(models.Model):
     
     def get_photo_url(self):
         """Return photo URL from file upload or URL field"""
+        # Prioritize photo_url if provided
+        if self.photo_url:
+            return self.photo_url
+        # Fall back to uploaded file if it exists
         if self.photo:
             return self.photo.url
-        return self.photo_url
+        return None
     
     def __str__(self):
         return f"{self.concert.venue} - Photo {self.id}"
@@ -113,9 +125,13 @@ class BandPhoto(models.Model):
     
     def get_photo_url(self):
         """Return photo URL from file upload or URL field"""
+        # Prioritize photo_url if provided
+        if self.photo_url:
+            return self.photo_url
+        # Fall back to uploaded file if it exists
         if self.photo:
             return self.photo.url
-        return self.photo_url
+        return None
     
     def __str__(self):
         return self.caption or f"Band Photo {self.id}"
@@ -131,9 +147,13 @@ class MerchPhoto(models.Model):
     
     def get_photo_url(self):
         """Return photo URL from file upload or URL field"""
+        # Prioritize photo_url if provided
+        if self.photo_url:
+            return self.photo_url
+        # Fall back to uploaded file if it exists
         if self.photo:
             return self.photo.url
-        return self.photo_url
+        return None
     
     def __str__(self):
         return self.caption or f"Merch Photo {self.id}"
