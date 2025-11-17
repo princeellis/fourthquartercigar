@@ -35,6 +35,14 @@ if settings.DEBUG:
 
 # Serve media files in both development and production
 # Use re_path with serve view for production compatibility
-urlpatterns += [
-    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-]
+# Note: In production, this requires DEBUG=False override or custom middleware
+if settings.DEBUG:
+    urlpatterns += [
+        re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    ]
+else:
+    # In production, serve media files without DEBUG check
+    from functools import partial
+    urlpatterns += [
+        re_path(r'^media/(?P<path>.*)$', partial(serve, show_indexes=False), {'document_root': settings.MEDIA_ROOT}),
+    ]
