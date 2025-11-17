@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.urls import path, re_path
 from django.conf import settings
 from django.conf.urls.static import static
-from django.views.static import serve
 from base import views
+from .media_views import serve_media
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,15 +34,7 @@ if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
 
 # Serve media files in both development and production
-# Use re_path with serve view for production compatibility
-# Note: In production, this requires DEBUG=False override or custom middleware
-if settings.DEBUG:
-    urlpatterns += [
-        re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-    ]
-else:
-    # In production, serve media files without DEBUG check
-    from functools import partial
-    urlpatterns += [
-        re_path(r'^media/(?P<path>.*)$', partial(serve, show_indexes=False), {'document_root': settings.MEDIA_ROOT}),
-    ]
+# Custom view that works regardless of DEBUG setting
+urlpatterns += [
+    re_path(r'^media/(?P<path>.*)$', serve_media),
+]
