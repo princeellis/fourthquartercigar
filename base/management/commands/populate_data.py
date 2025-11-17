@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 from django.utils import timezone
 from datetime import date
-from base.models import BandMember, Release, Song
+from base.models import BandMember, Release, Song, Concert, MerchPhoto
 
 class Command(BaseCommand):
     help = 'Populate database with initial band data'
@@ -34,6 +34,7 @@ class Command(BaseCommand):
             release_date=date(2025, 1, 1),
             spotify_url='https://open.spotify.com/album/1kZvNHfYfRCMY1XChAZSkv?si=0ajwpIB5QZKyRPV-u2V2gQ',
             youtube_url='https://youtube.com/playlist?list=OLAK5uy_kA_WGaQdtHILnPbosmf_fJe6DLEYaAyDM&si=b89W4NCgvQsotbtc',
+            artwork_url='/static/base/images/artwork/passenger.JPG',
             order=1
         )
         
@@ -93,6 +94,7 @@ class Command(BaseCommand):
             release_date=date(2025, 1, 1),
             spotify_url='https://open.spotify.com/track/6ff6j4s5E2ABOKA9ogOJwG?si=a7a889256fa64a11',
             youtube_url='https://www.youtube.com/watch?v=3claX2MmHsY&list=OLAK5uy_mASAuiqOZE2Gj4IIACpN9j5JC_fh3nqxI',
+            artwork_url='/static/base/images/artwork/away.jpg',
             order=2
         )
         
@@ -113,6 +115,7 @@ class Command(BaseCommand):
             release_date=date(2025, 1, 1),
             spotify_url='https://open.spotify.com/track/3HSePZ7a9MKGFoCRaaSyF2?si=9981bd27f78d485e',
             youtube_url='https://www.youtube.com/watch?v=cM9WgsBiIZQ&list=OLAK5uy_mvFz2FzgWF-jR0REGZ3pHXZUkKOvMRnIo',
+            artwork_url='/static/base/images/artwork/needaride.JPEG',
             order=3
         )
         
@@ -127,5 +130,31 @@ class Command(BaseCommand):
         )
         
         self.stdout.write(self.style.SUCCESS('Created singles'))
+        
+        # Create Rock Bible Church concert
+        Concert.objects.create(
+            date=date(2024, 11, 1),  # Adjust date as needed
+            venue='Rock Bible Church',
+            city='Pleasanton',
+            state='CA',
+            is_upcoming=False,
+            photo_url='/static/base/images/concerts/RBC.JPG',
+            setlist='Need a Ride, End of Beginning (Djo), Valerie (Amy Winehouse), Relax (Vacations), Away, Show Me How (Men I Trust), Doomsday (Lizzy McAlpine), Not This Time'
+        )
+        
+        self.stdout.write(self.style.SUCCESS('Created concert'))
+        
+        # Create merch photos
+        merch_data = [
+            {'caption': 'Passenger EP T-Shirt', 'photo_url': '/static/base/images/merch/passenger-ep-t-shirt-Picsart-BackgroundRemover.jpg', 'order': 1},
+            {'caption': 'Geese Madness T-Shirt', 'photo_url': '/static/base/images/merch/geese-madness-t-shirt-Picsart-BackgroundRemover.jpg', 'order': 2},
+            {'caption': 'Need a Ride Crew', 'photo_url': '/static/base/images/merch/need-a-ride-catherine-assisted-ad-crew-Picsart-BackgroundRemover.jpg', 'order': 3},
+            {'caption': 'Cigar Logo Trucker Cap', 'photo_url': '/static/base/images/merch/fourth-quarter-cigar-cigar-logo-trucker-cap-Picsart-BackgroundRemover.jpg', 'order': 4},
+        ]
+        
+        for merch in merch_data:
+            MerchPhoto.objects.create(**merch)
+        
+        self.stdout.write(self.style.SUCCESS('Created merch photos'))
         self.stdout.write(self.style.SUCCESS('Successfully populated database!'))
 
