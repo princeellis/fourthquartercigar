@@ -42,12 +42,13 @@ class Command(BaseCommand):
                 'state': 'CA',
                 'is_upcoming': False,
                 'photo_url': '/static/base/images/concerts/RBC.JPG',
-                'setlist': 'Need a Ride, End of Beginning (Djo), Valerie (Amy Winehouse), Relax (Vacations), Away, Show Me How (Men I Trust), Doomsday (Lizzy McAlpine), Not This Time'
+                'setlist': 'Need a Ride, End of Beginning (Djo), Valerie (Amy Winehouse), Relax (Vacations), Away, Show Me How (Men I Trust), Doomsday (Lizzy McAlpine), Not This Time, Passenger'
             }
         )
         if not created:
             rbc.date = date(2025, 8, 10)
             rbc.photo_url = '/static/base/images/concerts/RBC.JPG'
+            rbc.setlist = 'Need a Ride, End of Beginning (Djo), Valerie (Amy Winehouse), Relax (Vacations), Away, Show Me How (Men I Trust), Doomsday (Lizzy McAlpine), Not This Time, Passenger'
             rbc.save()
         self.stdout.write(self.style.SUCCESS(f'{"Created" if created else "Updated"} RBC concert'))
         
