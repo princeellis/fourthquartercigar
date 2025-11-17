@@ -38,7 +38,7 @@ class Command(BaseCommand):
             venue='Rock Bible Church',
             city='Pleasanton',
             defaults={
-                'date': date(2024, 11, 1),
+                'date': date(2025, 8, 10),
                 'state': 'CA',
                 'is_upcoming': False,
                 'photo_url': '/static/base/images/concerts/RBC.JPG',
@@ -46,6 +46,7 @@ class Command(BaseCommand):
             }
         )
         if not created:
+            rbc.date = date(2025, 8, 10)
             rbc.photo_url = '/static/base/images/concerts/RBC.JPG'
             rbc.save()
         self.stdout.write(self.style.SUCCESS(f'{"Created" if created else "Updated"} RBC concert'))

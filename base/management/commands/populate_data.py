@@ -31,7 +31,7 @@ class Command(BaseCommand):
         passenger_ep = Release.objects.create(
             title='Passenger',
             release_type='EP',
-            release_date=date(2025, 1, 1),
+            release_date=date(2025, 9, 30),
             spotify_url='https://open.spotify.com/album/1kZvNHfYfRCMY1XChAZSkv?si=0ajwpIB5QZKyRPV-u2V2gQ',
             youtube_url='https://youtube.com/playlist?list=OLAK5uy_kA_WGaQdtHILnPbosmf_fJe6DLEYaAyDM&si=b89W4NCgvQsotbtc',
             artwork_url='/static/base/images/artwork/passenger.JPG',
@@ -91,7 +91,7 @@ class Command(BaseCommand):
         away_single = Release.objects.create(
             title='Away',
             release_type='Single',
-            release_date=date(2025, 1, 1),
+            release_date=date(2025, 4, 27),
             spotify_url='https://open.spotify.com/track/6ff6j4s5E2ABOKA9ogOJwG?si=a7a889256fa64a11',
             youtube_url='https://www.youtube.com/watch?v=3claX2MmHsY&list=OLAK5uy_mASAuiqOZE2Gj4IIACpN9j5JC_fh3nqxI',
             artwork_url='/static/base/images/artwork/away.jpg',
@@ -112,7 +112,7 @@ class Command(BaseCommand):
         need_a_ride_single = Release.objects.create(
             title='Need a Ride',
             release_type='Single',
-            release_date=date(2025, 1, 1),
+            release_date=date(2025, 6, 27),
             spotify_url='https://open.spotify.com/track/3HSePZ7a9MKGFoCRaaSyF2?si=9981bd27f78d485e',
             youtube_url='https://www.youtube.com/watch?v=cM9WgsBiIZQ&list=OLAK5uy_mvFz2FzgWF-jR0REGZ3pHXZUkKOvMRnIo',
             artwork_url='/static/base/images/artwork/needaride.JPEG',
@@ -133,7 +133,7 @@ class Command(BaseCommand):
         
         # Create Rock Bible Church concert
         Concert.objects.create(
-            date=date(2024, 11, 1),  # Adjust date as needed
+            date=date(2025, 8, 10),
             venue='Rock Bible Church',
             city='Pleasanton',
             state='CA',
