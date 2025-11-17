@@ -1691,61 +1691,72 @@ html {
         padding: 2rem 1rem;
     }
     
-    .merch-content {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        padding: 1rem;
-        min-height: auto;
+    /* Hide carousel on mobile, show simple grid */
+    .merch-carousel-wrapper {
+        display: none !important;
     }
     
-    .merch-text-section {
+    .all-merch-mobile {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 0;
+    }
+    
+    .all-merch-mobile h2 {
+        text-align: center;
+        font-size: 1.5rem;
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--color-white);
+        margin: 0 0 0.5rem 0;
+    }
+    
+    .all-merch-mobile p {
+        text-align: center;
+        font-size: 0.7rem;
+        color: #d4a574;
+        margin-bottom: 1.5rem;
+        letter-spacing: 1px;
+    }
+    
+    .all-merch-mobile .merch-product-item {
+        background: rgba(30, 30, 30, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 0.75rem;
         text-align: center;
     }
     
-    .merch-title {
-        font-size: 1.25rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .merch-label {
-        font-size: 0.6rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .merch-badge {
-        font-size: 0.55rem;
-        padding: 0.25rem 0.6rem;
-        margin-bottom: 0.75rem;
-    }
-    
-    .merch-shop-btn {
-        padding: 0.6rem 1rem;
-        font-size: 0.65rem;
-    }
-    
-    .merch-products {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
-        min-height: auto;
-    }
-    
-    .merch-product-item {
-        max-width: 100%;
-    }
-    
-    .merch-product-img {
-        max-width: 100%;
+    .all-merch-mobile .merch-product-img {
+        width: 100%;
         max-height: 100px;
         object-fit: contain;
     }
     
-    .merch-nav-btn {
-        display: none;
+    .all-merch-mobile .merch-shop-btn {
+        background: var(--color-white);
+        color: var(--color-black);
+        border: none;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 4px;
+        text-align: center;
     }
     
-    .merch-dots {
-        margin-top: 1rem;
+    .all-merch-mobile .merch-shop-btn:hover {
+        opacity: 0.8;
     }
     
     .merch-product-item {
